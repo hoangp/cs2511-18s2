@@ -7,6 +7,7 @@ public class C {
 		// has access to only variables in A with default, public and protected scope
 		
 		A objA = new A();
+		
 		System.out.println("var: " + objA.var);
 		System.out.println("varPub: "  + objA.varPub);
 		System.out.println("varPro: "  + objA.varPro);

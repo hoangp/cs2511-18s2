@@ -25,4 +25,5 @@ public class Employee {
   public String getName() { return name; }
 
   public float getSalary() { return salary; }
+  
 }

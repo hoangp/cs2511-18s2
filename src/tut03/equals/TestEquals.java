@@ -1,7 +1,4 @@
-package tut03.test;
-
-import tut03.equals.Employee;
-import tut03.equals.Manager;
+package tut03.equals;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -13,7 +10,7 @@ public class TestEquals {
     
     System.out.println();
     System.out.println(e1.equals(e2));
-    
+  
     // Raise salary of e1
     e1.raiseSalary(10); 
     System.out.println();
@@ -22,7 +19,7 @@ public class TestEquals {
       
     LocalDate hireDate = LocalDate.of(2018, Month.JANUARY, 10);
     Employee e = new Manager("Bill",50000,hireDate);
-    // e.getHireDate() would not compile, but e will be a Manager instance at runtime
+    //e.getHireDate() would not compile, but e will be a Manager object at runtime
     System.out.println();
     System.out.println(e.getClass().getName());
  

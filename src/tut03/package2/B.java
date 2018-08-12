@@ -1,4 +1,6 @@
-package tut03.package1;
+package tut03.package2;
+
+import tut03.package1.A;
 
 /*
  * @author Aarthi
@@ -8,7 +10,7 @@ public class B extends A {
 	
 	public void methodB() {
 		// Within the sub-class, have access to variables with default, public and protected scope
-		System.out.println("var: " + var);
+//		System.out.println("var: " + var);
 		System.out.println("varPub: "  + varPub);
 		System.out.println("varPro: "  + varPro);
 //		The line below does not compile because 
