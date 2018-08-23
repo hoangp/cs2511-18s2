@@ -14,6 +14,17 @@ public class Point {
     return (this.x == obj.x) && (this.y == obj.y);
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    Point other = (Point) obj;
+    if (x != other.x) return false;
+    if (y != other.y) return false;
+    return true;
+  }
+
   public static void main(String[] args) {
     Point p1 = new Point(1, 2);
     Point p2 = new Point(1, 2);

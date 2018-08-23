@@ -11,16 +11,17 @@ import java.util.Scanner;
  */
 public class Sum {
   public static void main(String args[]) {
+    System.out.println("Enter some integers: ");
+    
     Scanner sc = new Scanner(System.in);
-    System.out.println();
-    System.out.println("Enter some integers separated only by spaces: (example 10 20 30)");
-    int sum = 0;
     String numbers = sc.nextLine();
     String[] nos = numbers.split(" ");
+    
+    int sum = 0;
     for (int i = 0; i < nos.length; i++) {
       sum += Integer.parseInt(nos[i]);
     }
-    System.out.println();
+    
     System.out.println("Sum =" + sum);
     sc.close();
   }

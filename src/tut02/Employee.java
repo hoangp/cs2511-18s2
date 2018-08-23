@@ -8,11 +8,6 @@ public class Employee {
     this.name = name;
     this.salary = salary;
   }
-  
-  @Override
-  public String toString() {
-    return this.getClass().getName() + " " + name + " salary=" + salary;
-  }
 
   public String getName() { return name; }
 
@@ -21,5 +16,9 @@ public class Employee {
   public float getSalary() { return salary; }
 
   public void setSalary(float salary) { this.salary = salary; }
-
+  
+  @Override
+  public String toString() {
+    return this.getClass().getName() + " " + name + " salary=" + salary;
+  }
 }
