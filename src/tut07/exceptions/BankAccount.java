@@ -1,4 +1,4 @@
-package tut06.designbycontract;
+package tut07.exceptions;
 
 import java.time.LocalDate;
 
@@ -34,22 +34,26 @@ public class BankAccount {
   /**
    * Deduct amount from balance, but only if sufficient funds and not over daily
    * limit.
+   * @throws InSufficientBalanceException
+   * @throws LimitException
    * @precondition amount >= 0
    */
-  public boolean withdraw(int amount) {
+  public void withdraw(int amount) throws InSufficientBalanceException, LimitException {
     LocalDate today = LocalDate.now();
 
     // if last withdrawal was not on this day, reset the withdrawn amount
     if (lastWithdrawal == null || !sameDay(lastWithdrawal, today)) todayWithdrawal = 0;
     // allow withdrawal only if sufficient funds and amount will not cause going
     // over daily limit
-    if (amount > balance || todayWithdrawal + amount > WITHDRAW_LIMIT) return false;
+    if (amount > balance) throw new InSufficientBalanceException(
+        "The amount requested for withdrawal is greater than your current balance.");
+    else if (todayWithdrawal + amount > WITHDRAW_LIMIT)
+      throw new LimitException("You have exceeded your daily withdrawal limit");
     else {
       // finally, allow withdrawal and update balances
       balance -= amount;
       todayWithdrawal += amount;
       lastWithdrawal = today;
-      return true;
     }
   }
 

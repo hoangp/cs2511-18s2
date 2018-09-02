@@ -1,4 +1,4 @@
-package tut06.designbycontract;
+package tut07.exceptions;
 
 import java.time.LocalDate;
 
@@ -24,21 +24,25 @@ public class InternetAccount extends BankAccount {
 
   /**
    * Deduct amount from balance, but only if not at maximum number of payments.
+   * @throws LimitException
+   * @throws InSufficientBalanceException
    * @precondition amount >= 0
    */
-  public boolean makePayment(int amount) {
+  public void withdraw(int amount) throws InSufficientBalanceException, LimitException {
     LocalDate today = LocalDate.now();
     // if last Internet payment was not in this month, reset the day
     if (lastPaymentDate == null || !sameMonth(lastPaymentDate, today)) {
       lastPaymentDate = today;
       numPayments = 0;
     }
-    if (numPayments < MONTHLY_LIMIT) if (withdraw(amount)) // tests funds available and not over daily limit
-    {
+    if (numPayments < MONTHLY_LIMIT) {
+
+      // tests funds available and not over daily limit
+      super.withdraw(amount);
       numPayments++;
-      return true;
-    } else return false;
-    else return false;
+    } else {
+      throw new LimitException("You have exceeded your monthly withdrawal limit");
+    }
   }
 
   /**
