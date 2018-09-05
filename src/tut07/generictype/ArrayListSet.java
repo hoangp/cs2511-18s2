@@ -67,6 +67,7 @@ public class ArrayListSet<E> implements Set<E> {
 
   @Override
   public boolean equals(Object o) {
+    // To be completed
     return false;
   }
 
