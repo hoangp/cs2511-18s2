@@ -38,7 +38,6 @@ public class DinerMenu implements Menu {
 			numberOfItems = numberOfItems + 1;
 		}
 	}
-
 	 
 /*
  *   getMenuItems() which exposes our internal implementation 
@@ -50,7 +49,7 @@ public class DinerMenu implements Menu {
 //	}
   
 /*  New method createIterator() which creates a DinerMenuIterator 
- * from the menuitems array and returs it to the client
+ * from the menuItems array and return it to the client
  */
 	public Iterator<MenuItem> createIterator() {
 		//return new DinerMenuIterator(menuItems);
