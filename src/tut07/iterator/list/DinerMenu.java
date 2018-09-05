@@ -1,7 +1,8 @@
-package tut07.iterator;
+package tut07.iterator.list;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class DinerMenu implements Menu {
 	private static final int MAX_ITEMS = 6;
@@ -53,8 +54,12 @@ public class DinerMenu implements Menu {
  * from the menuitems array and returs it to the client
  */
 	public Iterator<MenuItem> createIterator() {
-		//return new DinerMenuIterator(menuItems);
-	  return Arrays.asList(menuItems).iterator();
+		return new DinerMenuIterator(menuItems);
 	}
 	//other methods
+
+  // DinnerMenu -> menuItems is an Array
+  public List<MenuItem> getMenuItems() {
+    return Arrays.asList(menuItems);
+  }
 }
