@@ -16,6 +16,7 @@ public class Waitress {
 		for (Menu m: menus) {
 			Iterator<MenuItem> menuIterator = m.createIterator();
 			printMenu(menuIterator);
+			System.out.println();
 		}
 				
 	}

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class DinerMenu implements Menu {
-	private static final int MAX_ITEMS = 6;
+	private static final int MAX_ITEMS = 10;
 	private int numberOfItems = 0;
 	private MenuItem[] menuItems;
   
@@ -53,7 +53,7 @@ public class DinerMenu implements Menu {
  */
 	public Iterator<MenuItem> createIterator() {
 		//return new DinerMenuIterator(menuItems);
-	  return Arrays.asList(menuItems).iterator();
+		return Arrays.asList(Arrays.copyOfRange(menuItems, 0, numberOfItems)).iterator();
 	}
 	//other methods
 }
