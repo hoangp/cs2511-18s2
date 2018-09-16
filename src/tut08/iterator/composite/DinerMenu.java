@@ -16,7 +16,7 @@ public class DinerMenu extends Menu {
 		addItem(new MenuItem("Steamed Veggies and Brown Rice", "Steamed vegetables over brown rice", true, 3.99));
 		addItem(new MenuItem("Pasta", "Spaghetti with Marinara Sauce, and a slice of sourdough bread", true, 3.89));
 	
-		addItem(new DessertMenu());
+		addItem(new CafeMenu());
 	}
 
 	public void addItem(MenuComponent menuItem) {
@@ -31,5 +31,10 @@ public class DinerMenu extends Menu {
 	@Override
 	public Iterator<?> getIterator() {
 		return Arrays.asList(Arrays.copyOfRange(menuItems, 0, numberOfItems)).iterator();
+	}
+
+	@Override
+	public String getName() {
+		return "Dinner Menu";
 	}
 }

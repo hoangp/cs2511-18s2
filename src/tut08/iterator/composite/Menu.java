@@ -7,6 +7,7 @@ public abstract class Menu implements MenuComponent {
 
 	@Override
 	public void print() {
+		System.out.println("--" + this.getName());
 		Iterator<?> it = this.getIterator();
 		while (it.hasNext()) {
 			MenuComponent item = (MenuComponent) it.next();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class PancakeHouseMenu extends Menu {
-	private ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();;
+	private ArrayList<MenuItem> menuItems = new ArrayList<>();;
 
 	public PancakeHouseMenu() {
 		addItem(new MenuItem("K&B's Pancake Breakfast", "Pancakes with scrambled eggs, and toast", true, 2.99));

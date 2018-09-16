@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class CafeMenu extends Menu {
-	private HashMap<String, MenuComponent> menuItems = new HashMap<String, MenuComponent>();
+	private HashMap<String, MenuComponent> menuItems = new HashMap<>();
 
 	public CafeMenu() {
 		addItem(new MenuItem("Veggie Burger and Air Fries", "Veggie burger on a whole wheat bun, lettuce, tomato, and fries", true, 3.99));
@@ -26,5 +26,10 @@ public class CafeMenu extends Menu {
 	@Override
 	public Iterator<?> getIterator() {
 		return menuItems.values().iterator();
+	}
+
+	@Override
+	public String getName() {
+		return "Cafe Menu";
 	}
 }
