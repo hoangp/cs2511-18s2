@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CountController extends AbstractBaseController {
+public class CountController extends AbstractController {
 	private int counter = 0;
 
 	public CountController(Stage stage) {

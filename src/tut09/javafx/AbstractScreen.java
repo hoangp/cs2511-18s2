@@ -6,13 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class AbstractBaseScreen {
+public class AbstractScreen {
 	protected Stage stage;
 	private String title;
 	private FXMLLoader fxmlLoader;
 	private Object controller;
 
-	public AbstractBaseScreen(Stage stage, String title, String fxmlFile, Object controller) {
+	public AbstractScreen(Stage stage, String title, String fxmlFile, Object controller) {
 		this.stage = stage;
 		this.title = title;
 		this.fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
