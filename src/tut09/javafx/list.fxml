@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -15,10 +15,11 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <Label fx:id="selectedLabel" layoutX="131.0" layoutY="245.0" text="Label" />
-            <Button layoutX="114.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleRemoveButton" text="Remove" />
+            <Label fx:id="selectedLabel" alignment="CENTER" layoutX="34.0" layoutY="199.0" prefHeight="17.0" prefWidth="228.0" text="Label" />
+            <Button layoutX="114.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleRemoveButton" text="Remove" />
             <TextField fx:id="addField" layoutX="65.0" layoutY="72.0" />
             <Button layoutX="127.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" />
+            <Button layoutX="114.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
          </children></AnchorPane>
   </items>
 </SplitPane>

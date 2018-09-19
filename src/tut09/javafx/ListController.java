@@ -20,7 +20,7 @@ public class ListController extends AbstractController{
 			new ChangeListener<String>() {
 				@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					selectedLabel.setText(newValue);
+					selectedLabel.setText(newValue + " selected");
 				}
 			});
 	}
@@ -45,5 +45,11 @@ public class ListController extends AbstractController{
 	public void handleRemoveButton() {
 		String item = listView.getSelectionModel().getSelectedItem();
 		if (!item.isEmpty()) listView.getItems().remove(item);
+	}
+	
+	@FXML
+	public void handleBackButton() {
+		StartScene scene = new StartScene(stage);
+		scene.display();
 	}
 }
