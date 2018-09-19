@@ -8,9 +8,9 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="229.0" layoutY="35.0" text="This is counting screen" />
-      <Button fx:id="backButton" layoutX="265.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
-      <Button fx:id="plusButton" layoutX="384.0" layoutY="165.0" mnemonicParsing="false" onAction="#handlePlusButton" text="+" />
-      <Button fx:id="minusButton" layoutX="192.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleMinusButton" text="-" />
+      <Button layoutX="265.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
+      <Button layoutX="384.0" layoutY="165.0" mnemonicParsing="false" onAction="#handlePlusButton" text="+" />
+      <Button layoutX="192.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleMinusButton" text="-" />
       <TextField fx:id="numberField" layoutX="217.0" layoutY="165.0" />
    </children>
 </Pane>
