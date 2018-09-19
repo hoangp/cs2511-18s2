@@ -1,4 +1,4 @@
-package tut09.factorymethod.stategy;
+package tut09.factorymethod.strategy;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
