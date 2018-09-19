@@ -22,7 +22,7 @@ public class CountController extends AbstractController {
 	@FXML
 	public void handleBackButton() {
 		StartScene screen = new StartScene(stage);
-		screen.start();
+		screen.display();
 	}
 
 	@FXML

@@ -7,7 +7,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		StartScene screen = new StartScene(primaryStage);
-		screen.start();
+		screen.display();
 	}
 
 	public static void main(String[] args) {

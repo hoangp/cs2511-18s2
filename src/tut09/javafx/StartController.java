@@ -11,6 +11,6 @@ public class StartController extends AbstractController {
 	@FXML
 	public void handleCounterButton() {
 		CountScene screen = new CountScene(stage);
-		screen.start();
+		screen.display();
 	}
 }

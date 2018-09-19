@@ -19,7 +19,7 @@ public class AbstractScene {
 		this.controller = controller;
 	}
 
-	public void start() {
+	public void display() {
 		stage.setTitle(title);
 		fxmlLoader.setController(controller);
 		try {
