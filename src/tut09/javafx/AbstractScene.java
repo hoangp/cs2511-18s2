@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class AbstractScene {
+public abstract class AbstractScene {
 	protected Stage stage;
 	private String title;
 	private FXMLLoader fxmlLoader;
@@ -19,7 +19,7 @@ public class AbstractScene {
 		this.controller = controller;
 	}
 
-	public void display() {
+	public void start() {
 		stage.setTitle(title);
 		fxmlLoader.setController(controller);
 		try {

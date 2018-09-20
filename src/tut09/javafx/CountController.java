@@ -11,8 +11,7 @@ public class CountController extends AbstractController {
 		super(stage);
 	}
 
-	@FXML
-	private TextField numberField;
+	@FXML private TextField numberField;
 
 	@FXML
 	public void initialize() {
@@ -22,7 +21,7 @@ public class CountController extends AbstractController {
 	@FXML
 	public void handleBackButton() {
 		StartScene screen = new StartScene(stage);
-		screen.display();
+		screen.start();
 	}
 
 	@FXML
