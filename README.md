@@ -1,7 +1,7 @@
 # COMP2511 18s2 Tutorials Demo
 
-- Tutorial Slides: bit.ly/cs2511-18s2
+- Tutorial Slides: https://bit.ly/cs2511-18s2
 - Videos: https://www.soln.io/course/B1RYiLjNX
-- Tutorial Demo: github.com/hoangp/cs2511-18s2
-- Lecture Examples: github.com/hoangp/cs2511-18s2-lecture-examples
-- Head First Design Pattern: github.com/bethrobson/Head-First-Design-Patterns
+- Tutorial Demo: https://www.github.com/hoangp/cs2511-18s2
+- Lecture Examples: https://www.github.com/hoangp/cs2511-18s2-lecture-examples
+- Head First Design Pattern: https://www.github.com/bethrobson/Head-First-Design-Patterns
