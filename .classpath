@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/import/adams/2/z5016573/code/cs2511-18s2/res/commons-codec-1.11.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
