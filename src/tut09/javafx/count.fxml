@@ -16,7 +16,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#handleMinusButton" text="-" />
                   <TextField fx:id="numberField" alignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#handlePlusButton" text="+" />
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#handlePlusButton" text="+" />
                </children>
             </HBox>
          </children>
@@ -36,7 +36,7 @@
    <bottom>
       <StackPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
          </children>
       </StackPane>
    </bottom>

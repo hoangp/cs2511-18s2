@@ -37,53 +37,76 @@ public class HeroController extends AbstractController {
 	private Map<Point, StackPane> stacks;
 	private Point heroPosition;
 	Random random = new Random();
-
+	
 	@FXML
-	public void initialize() {
-		stacks = new HashMap<>();
-		heroPosition = new Point(0, 0);
-		initGridPane();
-		mazePane.getChildren().add(gridPane);
-		stacks.get(heroPosition).getChildren().add(heroImage);
-	}
-
+  public void handleBackButton() {
+    StartScene scene = new StartScene(stage);
+    scene.start();
+  }
+	
 	@FXML
-	public void handleResetButton() {
-		mazeWidth = 3 + random.nextInt(6);
-		mazeHeight = 3 + random.nextInt(4);
-		mazePane.getChildren().remove(gridPane);
-		initialize();
-	}
-
+  public void handleResetButton() {
+	  squareSize = 32 + random.nextInt(18); // random square 32 -> 50
+    mazeWidth = 3 + random.nextInt(6);    // random width  3 -> 8
+    mazeHeight = 3 + random.nextInt(4);   // random height 3 -> 6
+    mazePane.getChildren().remove(gridPane);
+    initialize();
+  }
+	
+	@FXML
+  public void initialize() {
+	  for (ImageView image : getAllEntityImages()) {
+	    image.setFitWidth(squareSize);
+	    image.setFitHeight(squareSize);
+	  }
+    stacks = new HashMap<>();
+    heroPosition = new Point(0, 0);
+    initGridPane();
+    mazePane.getChildren().add(gridPane);
+    stacks.get(heroPosition).getChildren().add(heroImage);
+  }
+	
 	private ImageView imageCopy(ImageView srcImage) {
-		ImageView image = new ImageView();
-		image.setImage(srcImage.getImage());
-		image.setFitWidth(squareSize);
-		image.setFitHeight(squareSize);
-		return image;
+    ImageView image = new ImageView();
+    image.setImage(srcImage.getImage());
+    image.setFitWidth(squareSize);
+    image.setFitHeight(squareSize);
+    return image;
+  }
+	
+	private StackPane stackCopy(ImageView image) {
+	  StackPane stack = new StackPane();
+    stack.setMaxSize(squareSize, squareSize);
+    stack.setMinSize(squareSize, squareSize);
+    stack.getChildren().add(image);
+    return stack;
+	}
+	
+	private List<ImageView> getAllEntityImages() {
+    List<ImageView> entities = getEntityImages();
+    entities.add(heroImage);
+    entities.add(tileImage);
+    return entities;
+  }
+	
+	private List<ImageView> getEntityImages() {
+	  List<ImageView> entities = new ArrayList<>();
+    entities.add(wallImage);
+    entities.add(treasureImage);
+    entities.add(swordImage);
+    entities.add(exitImage);
+    return entities;
 	}
 
-	public void initGridPane() {
+	private void initGridPane() {
 		gridPane = new GridPane();
-		List<ImageView> entities = new ArrayList<>();
-		entities.add(wallImage);
-		entities.add(treasureImage);
-		entities.add(swordImage);
-		entities.add(exitImage);
+		List<ImageView> entities = getEntityImages();
 		for (int i = 0; i < mazeWidth; i++) {
 			for (int j = 0; j < mazeHeight; j++) {
-				ImageView image = new ImageView();
-				image.setImage(tileImage.getImage());
-				image.setFitWidth(squareSize);
-				image.setFitHeight(squareSize);
-
-				StackPane stack = new StackPane();
-				stack.setMaxSize(squareSize, squareSize);
-				stack.setMinSize(squareSize, squareSize);
-				stack.getChildren().add(imageCopy(tileImage));
+				StackPane stack = stackCopy(imageCopy(tileImage));
 
 				if (random.nextInt(4) == 0) {
-					image = imageCopy(entities.get(random.nextInt(entities.size())));
+					ImageView image = imageCopy(entities.get(random.nextInt(entities.size())));
 					stack.getChildren().add(image);
 				}
 
@@ -92,12 +115,6 @@ public class HeroController extends AbstractController {
 			}
 		}
 		gridPane.autosize();
-	}
-
-	@FXML
-	public void handleBackButton() {
-		StartScene scene = new StartScene(stage);
-		scene.start();
 	}
 
 	@FXML
@@ -118,19 +135,16 @@ public class HeroController extends AbstractController {
 		default:
 			break;
 		}
-		event.consume();
 	}
 
 	private void moveHeroBy(int dx, int dy) {
-		int x = heroPosition.x + dx;
-		int y = heroPosition.y + dy;
-		moveHeroTo(x, y);
+		moveHeroTo(heroPosition.x + dx, heroPosition.y + dy);
 	}
 
 	private void moveHeroTo(int x, int y) {
 		if (x >= 0 && x < mazeWidth && y >= 0 && y < mazeHeight) {
-			List<Node> nodes = stacks.get(heroPosition).getChildren();
-			nodes.remove(nodes.size() - 1);
+			List<Node> stackChildren = stacks.get(heroPosition).getChildren();
+			stackChildren.remove(stackChildren.size() - 1);
 			heroPosition = new Point(x, y);
 			stacks.get(heroPosition).getChildren().add(heroImage);
 		}

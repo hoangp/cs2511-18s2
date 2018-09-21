@@ -25,18 +25,18 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#handleAddButton" text="Add">
+                        <Button defaultButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#handleAddButton" text="Add">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Pane prefHeight="100.0" prefWidth="200.0" />
+                        <Pane prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         <Label fx:id="selectedLabel" alignment="CENTER" prefHeight="17.0" prefWidth="228.0" text="Label">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleRemoveButton" text="Remove">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#handleRemoveButton" text="Remove">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
@@ -51,7 +51,7 @@
                   <Pane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
-            <ListView fx:id="listView" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+            <ListView fx:id="listView" focusTraversable="false" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </center>
@@ -69,7 +69,7 @@
    <bottom>
       <StackPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
+            <Button cancelButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
          </children>
       </StackPane>
    </bottom>

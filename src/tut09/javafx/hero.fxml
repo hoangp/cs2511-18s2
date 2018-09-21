@@ -12,7 +12,22 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <Pane fx:id="mazePane" focusTraversable="true" BorderPane.alignment="CENTER" />
+      <Pane fx:id="mazePane" focusTraversable="true" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="tileImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/tile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="heroImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/human_new.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </ImageView>
+         </children></Pane>
    </center>
    <right>
       <TilePane prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -49,26 +64,13 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="heroImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/human_new.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="tileImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/tile.png" />
-               </image>
-            </ImageView>
          </children>
       </TilePane>
    </right>
    <bottom>
-      <StackPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane focusTraversable="true" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
+            <Button fx:id="backButton" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
          </children>
       </StackPane>
    </bottom>

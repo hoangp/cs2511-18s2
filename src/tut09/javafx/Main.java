@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+	  primaryStage.setResizable(false);
 		StartScene screen = new StartScene(primaryStage);
 		screen.start();
 	}
