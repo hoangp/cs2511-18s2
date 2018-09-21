@@ -13,7 +13,7 @@ public class EncryptionTest {
 		// Read contents from file
 		String contents = "";
 		try {
-			contents = new String(Files.readAllBytes(Paths.get("test.txt")));
+			contents = new String(Files.readAllBytes(Paths.get("res/test.txt")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -24,7 +24,7 @@ public class EncryptionTest {
 		System.out.println(cyphertext);
 
 		// Write encrypted file to disk
-		try (FileOutputStream outputStream = new FileOutputStream("test.txt.encrypted")) {
+		try (FileOutputStream outputStream = new FileOutputStream("res/test.txt.encrypted")) {
 			outputStream.write(cyphertext.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();

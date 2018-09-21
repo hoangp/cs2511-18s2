@@ -8,5 +8,10 @@ public class Bicycle {
 	private float getCost() {
 		return wheels.cost() * 2 + frame.getCost() + assemblyCost;
 	}
+	
+	@Override
+	public String toString() {
+	  return "Cost = " + getCost();
+	}
 
 }
