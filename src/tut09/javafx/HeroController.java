@@ -46,7 +46,6 @@ public class HeroController extends AbstractController {
 	
 	@FXML
   public void handleResetButton() {
-	  squareSize = 32 + random.nextInt(18); // random square 32 -> 50
     mazeWidth = 3 + random.nextInt(6);    // random width  3 -> 8
     mazeHeight = 3 + random.nextInt(4);   // random height 3 -> 6
     mazePane.getChildren().remove(gridPane);
@@ -55,10 +54,6 @@ public class HeroController extends AbstractController {
 	
 	@FXML
   public void initialize() {
-	  for (ImageView image : getAllEntityImages()) {
-	    image.setFitWidth(squareSize);
-	    image.setFitHeight(squareSize);
-	  }
     stacks = new HashMap<>();
     heroPosition = new Point(0, 0);
     initGridPane();
@@ -81,13 +76,6 @@ public class HeroController extends AbstractController {
     stack.getChildren().add(image);
     return stack;
 	}
-	
-	private List<ImageView> getAllEntityImages() {
-    List<ImageView> entities = getEntityImages();
-    entities.add(heroImage);
-    entities.add(tileImage);
-    return entities;
-  }
 	
 	private List<ImageView> getEntityImages() {
 	  List<ImageView> entities = new ArrayList<>();
