@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <Pane fx:id="mazePane" focusTraversable="true" BorderPane.alignment="CENTER">
          <children>
@@ -23,49 +22,31 @@
                <image>
                   <Image url="@../../../res/human_new.png" />
                </image>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
+            </ImageView>
+            <ImageView fx:id="wallImage" fitHeight="50.0" fitWidth="100.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/brick_brown_0.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="exitImage" fitHeight="50.0" fitWidth="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/exit.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="treasureImage" fitHeight="50.0" fitWidth="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/gold_pile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="swordImage" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/greatsword_1_new.png" />
+               </image>
             </ImageView>
          </children></Pane>
    </center>
    <right>
-      <TilePane prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="wallImage" fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/brick_brown_0.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="treasureImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/gold_pile.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="swordImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/greatsword_1_new.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="exitImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/exit.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </ImageView>
-         </children>
-      </TilePane>
+      <TilePane fx:id="designPane" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
       <StackPane focusTraversable="true" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -77,7 +58,7 @@
    <top>
       <ToolBar focusTraversable="false" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleResetButton" text="Randomize" />
+          <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleRandomizeButton" text="Randomize" />
         </items>
       </ToolBar>
    </top>

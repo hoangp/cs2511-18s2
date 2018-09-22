@@ -1,18 +1,25 @@
 package tut09.javafx;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 public class HeroController extends AbstractController {
@@ -32,77 +39,114 @@ public class HeroController extends AbstractController {
 	@FXML private ImageView treasureImage;
 	@FXML private Button backButton;
 	@FXML private Pane mazePane;
+	@FXML private TilePane designPane;
 
 	private GridPane gridPane;
-	private Map<Point, StackPane> stacks;
+	private Map<Point, StackPane> gridStacks;
+	private List<ImageView> entityImages;
 	private Point heroPosition;
-	Random random = new Random();
-	
+	private Random random = new Random();
+
 	@FXML
-  public void handleBackButton() {
-    StartScene scene = new StartScene(stage);
-    scene.start();
-  }
-	
-	@FXML
-  public void handleResetButton() {
-    mazeWidth = 3 + random.nextInt(6);    // random width  3 -> 8
-    mazeHeight = 3 + random.nextInt(4);   // random height 3 -> 6
-    mazePane.getChildren().remove(gridPane);
-    initialize();
-  }
-	
-	@FXML
-  public void initialize() {
-    stacks = new HashMap<>();
-    heroPosition = new Point(0, 0);
-    initGridPane();
-    mazePane.getChildren().add(gridPane);
-    stacks.get(heroPosition).getChildren().add(heroImage);
-  }
-	
-	private ImageView imageCopy(ImageView srcImage) {
-    ImageView image = new ImageView();
-    image.setImage(srcImage.getImage());
-    image.setFitWidth(squareSize);
-    image.setFitHeight(squareSize);
-    return image;
-  }
-	
-	private StackPane stackCopy(ImageView image) {
-	  StackPane stack = new StackPane();
-    stack.setMaxSize(squareSize, squareSize);
-    stack.setMinSize(squareSize, squareSize);
-    stack.getChildren().add(image);
-    return stack;
-	}
-	
-	private List<ImageView> getEntityImages() {
-	  List<ImageView> entities = new ArrayList<>();
-    entities.add(wallImage);
-    entities.add(treasureImage);
-    entities.add(swordImage);
-    entities.add(exitImage);
-    return entities;
+	public void handleBackButton() {
+		StartScene scene = new StartScene(stage);
+		scene.start();
 	}
 
-	private void initGridPane() {
-		gridPane = new GridPane();
-		List<ImageView> entities = getEntityImages();
+	@FXML
+	public void handleRandomizeButton() {
+		mazeWidth = 3 + random.nextInt(6);  // random width 3 -> 8
+		mazeHeight = 3 + random.nextInt(4); // random height 3 -> 6
+		mazePane.getChildren().remove(gridPane);
+		resetMaze();
+	}
+
+	@FXML
+	public void initialize() {
+		entityImages = Arrays.asList(wallImage, treasureImage, swordImage, exitImage);
+		for (ImageView imageEntity : entityImages) {
+			ImageView image = imageCopy(imageEntity);
+			makeDraggable(image);
+			designPane.getChildren().add(image);
+		}
+		resetMaze();
+	}
+
+	private void resetMaze() {
+		gridStacks = new HashMap<>();
+		heroPosition = new Point(0, 0);
+		gridPane = initGridPane();
+		gridStacks.get(heroPosition).getChildren().add(heroImage);
+		mazePane.getChildren().add(gridPane);
+	}
+
+	private void makeDraggable(ImageView node) {
+		node.setOnDragDetected(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent event) {
+				Dragboard db = node.startDragAndDrop(TransferMode.ANY);
+				ClipboardContent content = new ClipboardContent();
+				content.putImage(node.getImage());
+				db.setContent(content);
+				event.consume();
+			}
+		});
+	}
+
+	private ImageView imageCopy(ImageView srcImage) {
+		ImageView image = new ImageView(srcImage.getImage());
+		image.setFitWidth(squareSize);
+		image.setFitHeight(squareSize);
+		return image;
+	}
+
+	private StackPane stackCopy(ImageView image) {
+		StackPane stack = new StackPane();
+		stack.setMaxSize(squareSize, squareSize);
+		stack.setMinSize(squareSize, squareSize);
+		stack.getChildren().add(image);
+		makeDroppable(stack);
+		return stack;
+	}
+
+	private void makeDroppable(StackPane stack) {
+		stack.setOnDragOver(new EventHandler<DragEvent>() {
+			public void handle(DragEvent event) {
+				if (event.getDragboard().hasImage()) {
+					event.acceptTransferModes(TransferMode.ANY);
+				}
+				event.consume();
+			}
+		});
+		stack.setOnDragDropped(new EventHandler<DragEvent>() {
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+				if (db.hasImage()) {
+					System.out.println("sdfgsfdg");
+					stack.getChildren().add(imageCopy(new ImageView(db.getImage())));
+				}
+				event.consume();
+			}
+		});
+	}
+
+	private GridPane initGridPane() {
+		GridPane grid = new GridPane();
 		for (int i = 0; i < mazeWidth; i++) {
 			for (int j = 0; j < mazeHeight; j++) {
 				StackPane stack = stackCopy(imageCopy(tileImage));
 
+				// Put random entities on maze
 				if (random.nextInt(4) == 0) {
-					ImageView image = imageCopy(entities.get(random.nextInt(entities.size())));
+					ImageView image = imageCopy(entityImages.get(random.nextInt(entityImages.size())));
 					stack.getChildren().add(image);
 				}
 
-				gridPane.add(stack, i, j);
-				stacks.put(new Point(i, j), stack);
+				grid.add(stack, i, j);
+				gridStacks.put(new Point(i, j), stack); // bad code, just for convenience
 			}
 		}
-		gridPane.autosize();
+		grid.autosize();
+		return grid;
 	}
 
 	@FXML
@@ -123,6 +167,7 @@ public class HeroController extends AbstractController {
 		default:
 			break;
 		}
+		event.consume();
 	}
 
 	private void moveHeroBy(int dx, int dy) {
@@ -131,14 +176,14 @@ public class HeroController extends AbstractController {
 
 	private void moveHeroTo(int x, int y) {
 		if (x >= 0 && x < mazeWidth && y >= 0 && y < mazeHeight) {
-			List<Node> stackChildren = stacks.get(heroPosition).getChildren();
+			List<Node> stackChildren = gridStacks.get(heroPosition).getChildren();
 			stackChildren.remove(stackChildren.size() - 1);
 			heroPosition = new Point(x, y);
-			stacks.get(heroPosition).getChildren().add(heroImage);
+			gridStacks.get(heroPosition).getChildren().add(heroImage);
 		}
 	}
 
-	class Point {
+	private class Point {
 		int x;
 		int y;
 
