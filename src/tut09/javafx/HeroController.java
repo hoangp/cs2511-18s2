@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -66,6 +67,7 @@ public class HeroController extends AbstractController {
 		entityImages = Arrays.asList(wallImage, treasureImage, swordImage, exitImage);
 		for (ImageView imageEntity : entityImages) {
 			ImageView image = imageCopy(imageEntity);
+			image.setCursor(Cursor.OPEN_HAND);
 			makeDraggable(image);
 			designPane.getChildren().add(image);
 		}
@@ -121,7 +123,6 @@ public class HeroController extends AbstractController {
 			public void handle(DragEvent event) {
 				Dragboard db = event.getDragboard();
 				if (db.hasImage()) {
-					System.out.println("sdfgsfdg");
 					stack.getChildren().add(imageCopy(new ImageView(db.getImage())));
 				}
 				event.consume();
