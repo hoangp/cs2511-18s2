@@ -19,23 +19,37 @@ public abstract class Entity {
 	public abstract String getSymbol();
 	
 	/**
-	 * @return the square of this entity
+	 * provide behavior when this entity is pushed by the pusher
+	 */
+	public boolean pushedBy(Entity pusher) {
+		return isPushable();
+	}
+	
+	/**
+	 * @return the square that this entity located
 	 */
 	public Square getSquare() {
 		return square;
 	}
 	
 	/**
-	 * Set the current square of this entity
+	 * Update the reference of the current square of this entity
 	 */
 	public void setSquare(Square square) {
 		this.square = square;
 	}
 	
 	/**
-	 * Move this entity to toSquare
+	 * @return if this entity is adjacent to other entity
 	 */
-	public boolean moveTo(Square toSquare) {
+	public boolean isAdjacent(Entity other) {
+		return square.isAdjacent(other.getSquare());
+	}
+	
+	/**
+	 * Move this entity to a square
+	 */
+	private boolean moveTo(Square toSquare) {
 		if (square.isAdjacent(toSquare)) {
 			if (toSquare.add(this)) {
 				square.removeEntity();
@@ -46,59 +60,78 @@ public abstract class Entity {
 		return false;
 	}
 	
-	public boolean moveTo(Entity entity) {
-		if (entity == null) return false;
-		if (moveTo(entity.getSquare())) return true;
-		else if (entity.isPushable()) {
-			Square toSquare = entity.getSquare();
-			if (entity.pushedBy(this)) {
-				return moveTo(toSquare);
+	/**
+	 * Move this entity to an entity
+	 */
+	private boolean moveTo(Entity toEntity) {
+		if (toEntity == null) return false;
+		if (moveTo(toEntity.getSquare())) return true;
+		else if (toEntity.isPushable()) {
+			Square squareBeforePushed = toEntity.getSquare();
+			if (toEntity.pushedBy(this)) {
+				return moveTo(squareBeforePushed);
 			}
 		}
 		return false;
 	}
 	
-	public boolean pushedBy(Entity pusher) {
-		return false;
-	}
-	
-	public boolean isAdjacent(Entity entity) {
-		return square.isAdjacent(entity.getSquare());
-	}
-	
-	public Entity getTop() {
-		Square squareTop = square.getTop();
-		return (squareTop == null) ? null : squareTop.getEntity();
-	}
-	
-	public Entity getBottom() {
-		Square squareBottom = square.getBottom();
-		return (squareBottom == null) ? null : squareBottom.getEntity();
-	}
-	
-	public Entity getLeft() {
-		Square squareLeft = square.getLeft();
-		return (squareLeft == null) ? null : squareLeft.getEntity();
-	}
-	
-	public Entity getRight() {
-		Square squareRight = square.getRight();
-		return (squareRight == null) ? null : squareRight.getEntity();
-	}
-	
+	/**
+	 * Move this entity up
+	 */
 	public boolean moveUp() {
-		return moveTo(getTop());
+		return moveTo(getAboveEntity());
 	}
 	
+	/**
+	 * Move this entity down
+	 */
 	public boolean moveDown() {
-		return moveTo(getBottom());
+		return moveTo(getBelowEntity());
 	}
 	
+	/**
+	 * Move this entity to the left
+	 */
 	public boolean moveLeft() {
-		return moveTo(getLeft());
+		return moveTo(getLeftEntity());
 	}
 	
+	/**
+	 * Move this entity to the right
+	 */
 	public boolean moveRight() {
-		return moveTo(getRight());
+		return moveTo(getRightEntity());
+	}
+	
+	/**
+	 * @return the entity on the square above of this entity's square
+	 */
+	public Entity getAboveEntity() {
+		Square above = square.getAboveSquare();
+		return (above == null) ? null : above.getEntity();
+	}
+	
+	/**
+	 * @return the entity on the square below of this entity's square
+	 */
+	public Entity getBelowEntity() {
+		Square below = square.getBelowSquare();
+		return (below == null) ? null : below.getEntity();
+	}
+	
+	/**
+	 * @return the entity on the square on the left of this entity's square
+	 */
+	public Entity getLeftEntity() {
+		Square left = square.getLeftSquare();
+		return (left == null) ? null : left.getEntity();
+	}
+	
+	/**
+	 * @return the entity on the square on the right of this entity's square
+	 */
+	public Entity getRightEntity() {
+		Square right = square.getRightSquare();
+		return (right == null) ? null : right.getEntity();
 	}
 }

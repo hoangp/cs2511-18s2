@@ -5,26 +5,22 @@ import java.util.List;
 import java.util.Stack;
 
 public class Square {
-	private final int row;
-	private final int col;
-	private final Stack<Entity> entities;
-	private Square top;
-	private Square bottom;
-	private Square left;
-	private Square right;
+	private final int row, col; // the location of this square on the board
+	private final Stack<Entity> entities; // stack of entities
+	private Square above, below, left, right; // reference to adjacent squares
 	
 	public Square(int row, int col) {
 		this.row = row; 
 		this.col = col;
 		entities = new Stack<>();
-		 
+		// A square always starts with an empty tile
 		Entity tile = new EmptyTile();
 		tile.setSquare(this);
 		add(tile);
 	}
 
 	/**
-	 * Add entity on the top layer
+	 * Add an entity on the top of the entities stack
 	 */
 	public boolean add(Entity entity) {
 		if (entity == null) return false;
@@ -33,7 +29,7 @@ public class Square {
 	}
 	
 	/**
-	 * @return the entity on top layer
+	 * @return the entity on top of the entities stack
 	 */
 	public Entity getEntity() {
 		if (entities.size() == 0) return null;
@@ -41,14 +37,14 @@ public class Square {
 	}
 	
 	/**
-	 * Remove the entity on top layer
+	 * Remove the entity on top of the entities stack
 	 */
 	public Entity removeEntity() {
 		return entities.pop();
 	}
 	
 	/**
-	 * @return if possible to put entity on top of this square
+	 * @return if possible to put another entity on the entities stack
 	 */
 	public boolean isStackable() {
 		if (entities.size() == 0) return true;
@@ -56,10 +52,10 @@ public class Square {
 	}
 	
 	/**
-	 * @return list of 4 adjacent squares
+	 * @return list of 4 adjacent squares (top, bottom, left, right)
 	 */
 	public List<Square> getAdjacentSquares() {
-		return Arrays.asList(top, bottom, left, right);
+		return Arrays.asList(above, below, left, right);
 	}
 
 	/**
@@ -68,46 +64,46 @@ public class Square {
 	public boolean isAdjacent(Square square) {
 		return getAdjacentSquares().contains(square);
 	}
+
+	/**
+	 * @return the square above of this square
+	 */
+	public Square getAboveSquare() { return above; }
 	
-	public int getRow() {
-		return row;
-	}
+	/**
+	 * Update the reference of the above square
+	 */
+	public void setAboveSquare(Square above) { this.above = above; }
+
+	/**
+	 * @return the square below of this square
+	 */
+	public Square getBelowSquare() { return below; }
 	
-	public int getCol() {
-		return col;
-	}
+	/**
+	 * Update the reference of the below square
+	 */
+	public void setBelowSquare(Square below) { this.below = below; }
 
-	public Square getTop() {
-		return top;
-	}
+	/**
+	 * @return the square on the left of this square
+	 */
+	public Square getLeftSquare() { return left; }
+	
+	/**
+	 * Update the reference of the square on the left
+	 */
+	public void setLeftSquare(Square left) { this.left = left; }
 
-	public void setTop(Square top) {
-		this.top = top;
-	}
-
-	public Square getBottom() {
-		return bottom;
-	}
-
-	public void setBottom(Square bottom) {
-		this.bottom = bottom;
-	}
-
-	public Square getLeft() {
-		return left;
-	}
-
-	public void setLeft(Square left) {
-		this.left = left;
-	}
-
-	public Square getRight() {
-		return right;
-	}
-
-	public void setRight(Square right) {
-		this.right = right;
-	}
+	/**
+	 * @return the square on the right of this square
+	 */
+	public Square getRightSquare() { return right; }
+	
+	/**
+	 * Update the reference of the square on the right
+	 */
+	public void setRightSquare(Square right) { this.right = right; }
 	
 	@Override
 	public int hashCode() {
@@ -129,7 +125,9 @@ public class Square {
 		return true;
 	}
 
-	
+	/**
+	 * @return the symbol of the entity of top of entities stack
+	 */
   public String getSymbol() {
 		return getEntity().getSymbol();
   }
