@@ -1,12 +1,13 @@
 package ass2.test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ass2.backend.Boulder;
 import ass2.backend.EmptyTile;
+import ass2.backend.Entity;
 import ass2.backend.Maze;
 import ass2.backend.Player;
+import ass2.backend.Switch;
 
 /**
  * US2: Boulder pushing
@@ -27,23 +28,54 @@ import ass2.backend.Player;
  *
  */
 class BoulderPushingTest {
+	String map1 = 
+			"X X X X X\n" +
+      "X P . . .\n" + 
+      "X . B . .\n" +
+      "X . . S .\n" +
+      "X . . . .\n";
+	String map2 = 
+			"X X X X X\n" +
+      "X P . . .\n" + 
+      "X . B . .\n" +
+      "X . B S .\n" +
+      "X . . . .\n";
 	Maze maze;
 	Player player;
 	
-	@BeforeEach
-	void initMaze() {
-		String map = 
-				"X X X X X\n" +
-	      "X P . . .\n" + 
-	      "X . B . .\n" +
-	      "X . . S .\n" +
-	      "X . . . .\n";
-		maze = Maze.parseMaze(5, 5, map);
+	@Test
+	void testBoulderTriggerSwitchOnOff() {
+		maze = Maze.parseMaze(5, 5, map2);
 		player = maze.getPlayer();
+		player.moveDown();
+		player.moveDown();
+		Entity theSwitch = maze.getEntity(3, 3);
+		assertTrue(theSwitch instanceof Switch);
+		assertTrue(theSwitch.isTriggered() == false);
+		player.moveRight();
+		assertTrue(theSwitch.isTriggered() == true);
+		player.moveRight();
+		assertTrue(theSwitch.isTriggered() == false);
+	}
+	
+	@Test
+	void testPlayerPushBoulderToOtherBoulder() {
+		maze = Maze.parseMaze(5, 5, map2);
+		player = maze.getPlayer();
+		player.moveRight();
+		assertTrue(maze.getEntity(1, 2) instanceof Player);
+		assertTrue(maze.getEntity(2, 2) instanceof Boulder);
+		assertTrue(maze.getEntity(3, 2) instanceof Boulder);
+		player.moveDown();
+		assertTrue(maze.getEntity(1, 2) instanceof Player);
+		assertTrue(maze.getEntity(2, 2) instanceof Boulder);
+		assertTrue(maze.getEntity(3, 2) instanceof Boulder);
 	}
 
 	@Test
-	void testPlayerPushBoulderDown() {
+	void testPlayerPushBoulderDownAndToBoudary() {
+		maze = Maze.parseMaze(5, 5, map1);
+		player = maze.getPlayer();
 		assertTrue(maze.getEntity(1, 2) instanceof EmptyTile);
 		player.moveRight();
 		assertTrue(maze.getEntity(1, 2) instanceof Player);
@@ -65,7 +97,9 @@ class BoulderPushingTest {
 	}
 	
 	@Test
-	void testPlayerPushBoulderRight() {
+	void testPlayerPushBoulderRightAndToBoudary() {
+		maze = Maze.parseMaze(5, 5, map1);
+		player = maze.getPlayer();
 		assertTrue(maze.getEntity(2, 1) instanceof EmptyTile);
 		player.moveDown();
 		assertTrue(maze.getEntity(2, 1) instanceof Player);
@@ -87,7 +121,9 @@ class BoulderPushingTest {
 	}
 	
 	@Test
-	void testPlayerPushBoulderUp() {
+	void testPlayerPushBoulderUpAndToWall() {
+		maze = Maze.parseMaze(5, 5, map1);
+		player = maze.getPlayer();
 		assertTrue(maze.getEntity(3, 2) instanceof EmptyTile);
 		player.moveDown();
 		player.moveDown();
@@ -105,4 +141,24 @@ class BoulderPushingTest {
 		assertTrue(maze.getEntity(1, 2) instanceof Boulder);
 	}
 
+	@Test
+	void testPlayerPushBoulderLeftAndToWall() {
+		maze = Maze.parseMaze(5, 5, map1);
+		player = maze.getPlayer();
+		assertTrue(maze.getEntity(2, 3) instanceof EmptyTile);
+		player.moveRight();
+		player.moveRight();
+		player.moveDown();
+		assertTrue(maze.getEntity(2, 3) instanceof Player);
+		assertTrue(maze.getEntity(2, 2) instanceof Boulder);
+		player.moveLeft();
+		assertTrue(maze.getEntity(2, 3) instanceof EmptyTile);
+		assertTrue(maze.getEntity(2, 2) instanceof Player);
+		assertTrue(maze.getEntity(2, 1) instanceof Boulder);
+		player.moveLeft();
+		player.moveLeft();
+		assertTrue(maze.getEntity(2, 3) instanceof EmptyTile);
+		assertTrue(maze.getEntity(2, 2) instanceof Player);
+		assertTrue(maze.getEntity(2, 1) instanceof Boulder);
+	}
 }

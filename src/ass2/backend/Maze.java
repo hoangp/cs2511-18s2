@@ -99,22 +99,4 @@ public class Maze {
 		
 		return maze;
 	}
-	
-//	public static void main(String[] args) {
-//		String text = "X X X X X\n" + 
-//									"X P . . .\n" + 
-//									"X . B . .\n" + 
-//									"X . . S .\n" + 
-//									"X . . . .\n";
-//		Maze maze = Maze.parseMaze(5, 5, text);
-//		maze.print();
-//		
-//		Player player = maze.getPlayer();
-//		player.moveRight();
-//		player.moveDown();
-//		maze.print();
-//		player.moveDown();
-//		maze.print();
-//	}
-
 }

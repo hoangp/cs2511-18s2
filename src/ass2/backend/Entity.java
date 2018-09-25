@@ -6,11 +6,14 @@ public abstract class Entity {
 	/** @return if possible to put any entity on top of this entity */
 	public abstract boolean isStackable();
 	
-	/** @return if possible to push this entity */
-	public abstract boolean isPushable();
-	
 	/** @return the text symbol presentation of this entity */
 	public abstract String getSymbol();
+	
+	/** @return if possible to push this entity */
+	public boolean isPushable() { return false; };
+	
+	/** @return if this entity has power to push things  */
+	public boolean isPusher() { return false; };
 	
 	/** the behavior when this entity is pushed by the pusher */
 	public boolean pushedBy(Entity pusher) { return isPushable(); }
@@ -54,7 +57,7 @@ public abstract class Entity {
 	private boolean moveTo(Entity toEntity) {
 		if (toEntity == null) return false;
 		if (moveTo(toEntity.getSquare())) return true;
-		else if (toEntity.isPushable()) {
+		else if (toEntity.isPushable() && this.isPusher()) {
 			Square squareBeforePushed = toEntity.getSquare();
 			if (toEntity.pushedBy(this)) {
 				return moveTo(squareBeforePushed);

@@ -7,22 +7,31 @@ public class Boulder extends Entity {
 	
   @Override
 	public boolean pushedBy(Entity pusher) {
+  	boolean pushSuccess = false;
+  	Square fromSquare = getSquare();
+  	Entity targetEntity = null;
 		if (isAdjacent(pusher)) {
-			if      (pusher.equals(getAboveEntity())) 
-//				Square thisSquare = getSquare();
-//				Square belowSquare = thisSquare.getBelowSquare();
-//				if (moveDown()) {
-//					Entity 
-//					if (thisSquare.getEntity().isTriggerable()) thisSquare.get
-//					if (below.isTriggerable());
-//					
-//				}
-//			}
-				return moveDown();
-			else if (pusher.equals(getBelowEntity())) return moveUp();
-			else if (pusher.equals(getLeftEntity()))  return moveRight();
-			else if (pusher.equals(getRightEntity())) return moveLeft();
+			if (pusher.equals(getAboveEntity())) {
+				targetEntity = getBelowEntity();
+				pushSuccess = moveDown();
+			} else if (pusher.equals(getBelowEntity())) {
+				targetEntity = getAboveEntity();
+				pushSuccess = moveUp();
+			} else if (pusher.equals(getLeftEntity()))  {
+				targetEntity = getRightEntity();
+				pushSuccess = moveRight();
+			} else if (pusher.equals(getRightEntity())) {
+				targetEntity = getLeftEntity();
+				pushSuccess = moveLeft();
+			};
 		}
-		return false;
+		
+		if (pushSuccess) {
+			if (targetEntity.isTriggerable()) targetEntity.setTrigger(true);
+			Entity hiddenEntity = fromSquare.getEntity();
+			if (hiddenEntity.isTriggerable()) hiddenEntity.setTrigger(false);
+		}
+		
+		return pushSuccess;
 	}
 }
