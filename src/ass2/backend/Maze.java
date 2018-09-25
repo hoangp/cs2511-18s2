@@ -49,7 +49,7 @@ public class Maze {
 	}
 	
 	/**
-	 * @return reference to the player entity
+	 * @return the player entity on the maze
 	 */
 	public Player getPlayer() {
 		return player;
@@ -76,7 +76,7 @@ public class Maze {
 	}
 	
 	/**
-	 * Build a maze from predefined textMap
+	 * Build a maze from string
 	 */
 	public static Maze parseMaze(int width, int height, String textMap) {
 		Maze maze = new Maze(width, height);

@@ -3,38 +3,38 @@ package ass2.backend;
 public abstract class Entity {
 	private Square square; // the current square of this entity
 	
-	/** @return if possible to put any entity on top of this entity */
+	/** @return true if possible to put any entity on top of this entity */
 	public abstract boolean isStackable();
 	
-	/** @return the text symbol presentation of this entity */
+	/** @return the string symbol presentation of this entity */
 	public abstract String getSymbol();
 	
-	/** @return if possible to push this entity */
+	/** @return true if possible to push this entity */
 	public boolean isPushable() { return false; };
 	
-	/** @return if this entity has power to push things  */
+	/** @return true if this entity has power to push things  */
 	public boolean isPusher() { return false; };
 	
 	/** the behavior when this entity is pushed by the pusher */
 	public boolean pushedBy(Entity pusher) { return isPushable(); }
 	
-	/** @return if possible to trigger this entity */
+	/** @return true if possible to trigger this entity */
 	public boolean isTriggerable() { return false; };
 	
-	/** @return if the entity is triggered */
+	/** @return true if the entity is triggered */
 	public boolean isTriggered() { return false; };
 	
-	/** @return if the entity is triggered */
+	/** Set the trigger status (only if this entity is triggerable) */
 	public void setTrigger(boolean triggered) {};
 	
 	/** @return the square that this entity located */
 	public Square getSquare() { return square; }
 	
-	/** Update the reference of the current square of this entity */
+	/** Set the current square of this entity */
 	public void setSquare(Square square) { this.square = square; }
 	
 	/** 
-	 * @return if this entity is adjacent to other entity 
+	 * @return true if this entity is adjacent to other entity 
 	 */
 	public boolean isAdjacent(Entity other) {
 		return square.isAdjacent(other.getSquare());

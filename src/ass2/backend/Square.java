@@ -49,7 +49,7 @@ public class Square {
 	}
 	
 	/**
-	 * @return if possible to put another entity on the entities stack
+	 * @return true if possible to put another entity on the entities stack
 	 */
 	public boolean isStackable() {
 		if (entities.size() == 0) return true;
@@ -57,14 +57,14 @@ public class Square {
 	}
 	
 	/**
-	 * @return list of 4 adjacent squares (top, bottom, left, right)
+	 * @return the list of 4 adjacent squares (top, bottom, left, right)
 	 */
 	public List<Square> getAdjacentSquares() {
 		return Arrays.asList(above, below, left, right);
 	}
 
 	/**
-	 * @return if the square is adjacent to this square
+	 * @return true if the square is adjacent to this square
 	 */
 	public boolean isAdjacent(Square square) {
 		return getAdjacentSquares().contains(square);
@@ -73,25 +73,25 @@ public class Square {
 	/** @return the square above of this square */
 	public Square getAboveSquare() { return above; }
 	
-	/** Update the reference of the above square */
+	/** Set the above square */
 	public void setAboveSquare(Square above) { this.above = above; }
 
 	/** @return the square below of this square */
 	public Square getBelowSquare() { return below; }
 	
-	/** Update the reference of the below square */
+	/** Set the below square */
 	public void setBelowSquare(Square below) { this.below = below; }
 
 	/** @return the square on the left of this square */
 	public Square getLeftSquare() { return left; }
 	
-	/** Update the reference of the square on the left */
+	/** Set the square on the left */
 	public void setLeftSquare(Square left) { this.left = left; }
 
 	/** @return the square on the right of this square */
 	public Square getRightSquare() { return right; }
 	
-	/** Update the reference of the square on the right */
+	/** Set of the square on the right */
 	public void setRightSquare(Square right) { this.right = right; }
 	
 	@Override
