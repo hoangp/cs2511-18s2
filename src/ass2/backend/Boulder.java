@@ -2,9 +2,10 @@ package ass2.backend;
 
 public class Boulder extends Entity {	
   @Override public boolean isStackable() { return false; }
-	@Override public boolean isPushable() { return true; }
 	@Override public String getSymbol() { return "[B]"; }
 	
+	@Override public boolean isPushable() { return true; }
+
   @Override
 	public boolean pushedBy(Entity pusher) {
   	boolean pushSuccess = false;

@@ -43,8 +43,10 @@ class BoulderPushingTest {
 	Maze maze;
 	Player player;
 	
+	
 	@Test
 	void testBoulderTriggerSwitchOnOff() {
+		System.out.println("testBoulderTriggerSwitchOnOff");
 		maze = Maze.parseMaze(5, 5, map2);
 		player = maze.getPlayer();
 		player.moveDown();
@@ -56,10 +58,12 @@ class BoulderPushingTest {
 		assertTrue(theSwitch.isTriggered() == true);
 		player.moveRight();
 		assertTrue(theSwitch.isTriggered() == false);
+		maze.print();
 	}
 	
 	@Test
 	void testPlayerPushBoulderToOtherBoulder() {
+		System.out.println("testPlayerPushBoulderToOtherBoulder");
 		maze = Maze.parseMaze(5, 5, map2);
 		player = maze.getPlayer();
 		player.moveRight();
@@ -70,10 +74,12 @@ class BoulderPushingTest {
 		assertTrue(maze.getEntity(1, 2) instanceof Player);
 		assertTrue(maze.getEntity(2, 2) instanceof Boulder);
 		assertTrue(maze.getEntity(3, 2) instanceof Boulder);
+		maze.print();
 	}
 
 	@Test
 	void testPlayerPushBoulderDownAndToBoudary() {
+		System.out.println("testPlayerPushBoulderDownAndToBoudary");
 		maze = Maze.parseMaze(5, 5, map1);
 		player = maze.getPlayer();
 		assertTrue(maze.getEntity(1, 2) instanceof EmptyTile);
@@ -94,10 +100,12 @@ class BoulderPushingTest {
 		assertTrue(maze.getEntity(2, 2) instanceof EmptyTile);
 		assertTrue(maze.getEntity(3, 2) instanceof Player);
 		assertTrue(maze.getEntity(4, 2) instanceof Boulder);
+		maze.print();
 	}
 	
 	@Test
 	void testPlayerPushBoulderRightAndToBoudary() {
+		System.out.println("testPlayerPushBoulderRightAndToBoudary");
 		maze = Maze.parseMaze(5, 5, map1);
 		player = maze.getPlayer();
 		assertTrue(maze.getEntity(2, 1) instanceof EmptyTile);
@@ -118,10 +126,12 @@ class BoulderPushingTest {
 		assertTrue(maze.getEntity(2, 2) instanceof EmptyTile);
 		assertTrue(maze.getEntity(2, 3) instanceof Player);
 		assertTrue(maze.getEntity(2, 4) instanceof Boulder);
+		maze.print();
 	}
 	
 	@Test
 	void testPlayerPushBoulderUpAndToWall() {
+		System.out.println("testPlayerPushBoulderUpAndToWall");
 		maze = Maze.parseMaze(5, 5, map1);
 		player = maze.getPlayer();
 		assertTrue(maze.getEntity(3, 2) instanceof EmptyTile);
@@ -139,10 +149,12 @@ class BoulderPushingTest {
 		assertTrue(maze.getEntity(3, 2) instanceof EmptyTile);
 		assertTrue(maze.getEntity(2, 2) instanceof Player);
 		assertTrue(maze.getEntity(1, 2) instanceof Boulder);
+		maze.print();
 	}
 
 	@Test
 	void testPlayerPushBoulderLeftAndToWall() {
+		System.out.println("testPlayerPushBoulderLeftAndToWall");
 		maze = Maze.parseMaze(5, 5, map1);
 		player = maze.getPlayer();
 		assertTrue(maze.getEntity(2, 3) instanceof EmptyTile);
@@ -160,5 +172,6 @@ class BoulderPushingTest {
 		assertTrue(maze.getEntity(2, 3) instanceof EmptyTile);
 		assertTrue(maze.getEntity(2, 2) instanceof Player);
 		assertTrue(maze.getEntity(2, 1) instanceof Boulder);
+		maze.print();
 	}
 }
