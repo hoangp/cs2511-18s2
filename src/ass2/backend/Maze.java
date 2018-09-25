@@ -67,7 +67,7 @@ public class Maze {
 							maze.setPlayer(player);
 						}
 					case "B":
-						maze.add(new Boulder(maze.getPlayer()), row, col);
+						maze.add(new Boulder(), row, col);
 					case "X":
 						maze.add(new Wall(), row, col);
 					case "S":

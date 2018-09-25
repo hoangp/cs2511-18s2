@@ -1,23 +1,17 @@
 package ass2.backend;
 
-public class Boulder extends Entity {
-	private final Player player;
-	
-	public Boulder(Player player) {
-		this.player = player;
-	}
-	
+public class Boulder extends Entity {	
   @Override public boolean isStackable() { return false; }
 	@Override public boolean isPushable() { return true; }
 	@Override public String getSymbol() { return "[B]"; }
 	
   @Override
-	public boolean moveAway() {
-		if (isAdjacent(player)) {
-			if      (player.equals(getTop()))    return moveDown();
-			else if (player.equals(getBottom())) return moveUp();
-			else if (player.equals(getLeft()))   return moveRight();
-			else if (player.equals(getRight()))  return moveLeft();
+	public boolean pushedBy(Entity pusher) {
+		if (isAdjacent(pusher)) {
+			if      (pusher.equals(getTop()))    return moveDown();
+			else if (pusher.equals(getBottom())) return moveUp();
+			else if (pusher.equals(getLeft()))   return moveRight();
+			else if (pusher.equals(getRight()))  return moveLeft();
 		}
 		return false;
 	}

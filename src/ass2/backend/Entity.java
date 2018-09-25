@@ -51,14 +51,14 @@ public abstract class Entity {
 		if (moveTo(entity.getSquare())) return true;
 		else if (entity.isPushable()) {
 			Square toSquare = entity.getSquare();
-			if (entity.moveAway()) {
+			if (entity.pushedBy(this)) {
 				return moveTo(toSquare);
 			}
 		}
 		return false;
 	}
 	
-	public boolean moveAway() {
+	public boolean pushedBy(Entity pusher) {
 		return false;
 	}
 	
