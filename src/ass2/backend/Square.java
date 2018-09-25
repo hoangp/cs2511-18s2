@@ -65,44 +65,28 @@ public class Square {
 		return getAdjacentSquares().contains(square);
 	}
 
-	/**
-	 * @return the square above of this square
-	 */
+	/** @return the square above of this square */
 	public Square getAboveSquare() { return above; }
 	
-	/**
-	 * Update the reference of the above square
-	 */
+	/** Update the reference of the above square */
 	public void setAboveSquare(Square above) { this.above = above; }
 
-	/**
-	 * @return the square below of this square
-	 */
+	/** @return the square below of this square */
 	public Square getBelowSquare() { return below; }
 	
-	/**
-	 * Update the reference of the below square
-	 */
+	/** Update the reference of the below square */
 	public void setBelowSquare(Square below) { this.below = below; }
 
-	/**
-	 * @return the square on the left of this square
-	 */
+	/** @return the square on the left of this square */
 	public Square getLeftSquare() { return left; }
 	
-	/**
-	 * Update the reference of the square on the left
-	 */
+	/** Update the reference of the square on the left */
 	public void setLeftSquare(Square left) { this.left = left; }
 
-	/**
-	 * @return the square on the right of this square
-	 */
+	/** @return the square on the right of this square */
 	public Square getRightSquare() { return right; }
 	
-	/**
-	 * Update the reference of the square on the right
-	 */
+	/** Update the reference of the square on the right */
 	public void setRightSquare(Square right) { this.right = right; }
 	
 	@Override
@@ -125,9 +109,7 @@ public class Square {
 		return true;
 	}
 
-	/**
-	 * @return the symbol of the entity of top of entities stack
-	 */
+	/** @return the symbol of the entity of top of entities stack */
   public String getSymbol() {
 		return getEntity().getSymbol();
   }

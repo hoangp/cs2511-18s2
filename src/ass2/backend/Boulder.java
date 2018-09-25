@@ -8,10 +8,10 @@ public class Boulder extends Entity {
   @Override
 	public boolean pushedBy(Entity pusher) {
 		if (isAdjacent(pusher)) {
-			if      (pusher.equals(getAboveEntity()))    return moveDown();
+			if      (pusher.equals(getAboveEntity())) return moveDown();
 			else if (pusher.equals(getBelowEntity())) return moveUp();
-			else if (pusher.equals(getLeftEntity()))   return moveRight();
-			else if (pusher.equals(getRightEntity()))  return moveLeft();
+			else if (pusher.equals(getLeftEntity()))  return moveRight();
+			else if (pusher.equals(getRightEntity())) return moveLeft();
 		}
 		return false;
 	}

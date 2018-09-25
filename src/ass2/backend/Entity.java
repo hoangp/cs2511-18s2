@@ -3,44 +3,26 @@ package ass2.backend;
 public abstract class Entity {
 	private Square square; // the current square of this entity
 	
-	/**
-	 * @return if possible to put any entity on top of this entity
-	 */
+	/** @return if possible to put any entity on top of this entity */
 	public abstract boolean isStackable();
 	
-	/**
-	 * @return if possible to push this entity
-	 */
+	/** @return if possible to push this entity */
 	public abstract boolean isPushable();
 	
-	/**
-	 * @return the symbol presentation of this entity
-	 */
+	/** the behavior when this entity is pushed by the pusher */
+	public boolean pushedBy(Entity pusher) { return isPushable(); }
+	
+	/** @return the text symbol presentation of this entity */
 	public abstract String getSymbol();
 	
-	/**
-	 * provide behavior when this entity is pushed by the pusher
-	 */
-	public boolean pushedBy(Entity pusher) {
-		return isPushable();
-	}
+	/** @return the square that this entity located */
+	public Square getSquare() { return square; }
 	
-	/**
-	 * @return the square that this entity located
-	 */
-	public Square getSquare() {
-		return square;
-	}
+	/** Update the reference of the current square of this entity */
+	public void setSquare(Square square) { this.square = square; }
 	
-	/**
-	 * Update the reference of the current square of this entity
-	 */
-	public void setSquare(Square square) {
-		this.square = square;
-	}
-	
-	/**
-	 * @return if this entity is adjacent to other entity
+	/** 
+	 * @return if this entity is adjacent to other entity 
 	 */
 	public boolean isAdjacent(Entity other) {
 		return square.isAdjacent(other.getSquare());
@@ -75,33 +57,17 @@ public abstract class Entity {
 		return false;
 	}
 	
-	/**
-	 * Move this entity up
-	 */
-	public boolean moveUp() {
-		return moveTo(getAboveEntity());
-	}
+	/** Move this entity up */
+	public boolean moveUp() { return moveTo(getAboveEntity()); }
 	
-	/**
-	 * Move this entity down
-	 */
-	public boolean moveDown() {
-		return moveTo(getBelowEntity());
-	}
+	/** Move this entity down */
+	public boolean moveDown() { return moveTo(getBelowEntity()); }
 	
-	/**
-	 * Move this entity to the left
-	 */
-	public boolean moveLeft() {
-		return moveTo(getLeftEntity());
-	}
+	/** Move this entity to the left */
+	public boolean moveLeft() { return moveTo(getLeftEntity()); }
 	
-	/**
-	 * Move this entity to the right
-	 */
-	public boolean moveRight() {
-		return moveTo(getRightEntity());
-	}
+	/** Move this entity to the right */
+	public boolean moveRight() { return moveTo(getRightEntity()); }
 	
 	/**
 	 * @return the entity on the square above of this entity's square
