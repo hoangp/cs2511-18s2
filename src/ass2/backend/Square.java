@@ -29,18 +29,23 @@ public class Square {
 	}
 	
 	/**
+	 * Move the entity on top this square to the other square
+	 */
+	public boolean moveTo(Square toSquare) {
+		if (isAdjacent(toSquare)) {
+			if (toSquare.add(getEntity())) {
+				return entities.pop() != null;
+			} 
+		}
+		return false;
+	}
+	
+	/**
 	 * @return the entity on top of the entities stack
 	 */
 	public Entity getEntity() {
 		if (entities.size() == 0) return null;
 		return entities.peek();
-	}
-	
-	/**
-	 * Remove the entity on top of the entities stack
-	 */
-	public Entity removeEntity() {
-		return entities.pop();
 	}
 	
 	/**

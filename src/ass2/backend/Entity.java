@@ -9,11 +9,20 @@ public abstract class Entity {
 	/** @return if possible to push this entity */
 	public abstract boolean isPushable();
 	
+	/** @return the text symbol presentation of this entity */
+	public abstract String getSymbol();
+	
 	/** the behavior when this entity is pushed by the pusher */
 	public boolean pushedBy(Entity pusher) { return isPushable(); }
 	
-	/** @return the text symbol presentation of this entity */
-	public abstract String getSymbol();
+	/** @return if possible to trigger this entity */
+	public boolean isTriggerable() { return false; };
+	
+	/** @return if the entity is triggered */
+	public boolean isTriggered() { return false; };
+	
+	/** @return if the entity is triggered */
+	public void setTrigger(boolean triggered) {};
 	
 	/** @return the square that this entity located */
 	public Square getSquare() { return square; }
@@ -32,12 +41,9 @@ public abstract class Entity {
 	 * Move this entity to a square
 	 */
 	private boolean moveTo(Square toSquare) {
-		if (square.isAdjacent(toSquare)) {
-			if (toSquare.add(this)) {
-				square.removeEntity();
-				square = toSquare;
-				return true;
-			} 
+		if (square.moveTo(toSquare)) {
+			square = toSquare;
+			return true;
 		}
 		return false;
 	}
