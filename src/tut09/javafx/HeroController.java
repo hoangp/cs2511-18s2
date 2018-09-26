@@ -1,32 +1,20 @@
 package tut09.javafx;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
+
+import java.util.*;
 
 public class HeroController extends AbstractController {
-	public HeroController(Stage stage) {
-		super(stage);
-	}
+	public HeroController() {}
 
 	private double squareSize = 50;
 	private int mazeWidth = 8;
@@ -38,7 +26,6 @@ public class HeroController extends AbstractController {
 	@FXML private ImageView swordImage;
 	@FXML private ImageView exitImage;
 	@FXML private ImageView treasureImage;
-	@FXML private Button backButton;
 	@FXML private Pane mazePane;
 	@FXML private TilePane designPane;
 

@@ -2,47 +2,46 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.TilePane?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:controller="tut09.javafx.HeroController" onKeyPressed="#handleKeyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <Pane fx:id="mazePane" focusTraversable="true" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="tileImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/tile.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="heroImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/human_new.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="wallImage" fitHeight="50.0" fitWidth="100.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/brick_brown_0.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="exitImage" fitHeight="50.0" fitWidth="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/exit.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="treasureImage" fitHeight="50.0" fitWidth="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/gold_pile.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="swordImage" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/greatsword_1_new.png" />
-               </image>
-            </ImageView>
+            <TilePane>
+               <children>
+                  <ImageView fx:id="tileImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/tile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="heroImage" disable="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/human_new.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="wallImage" fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/brick_brown_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="exitImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/exit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treasureImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/gold_pile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="swordImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/greatsword_1_new.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </TilePane>
          </children></Pane>
    </center>
    <right>
@@ -51,12 +50,12 @@
    <bottom>
       <StackPane focusTraversable="true" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
+            <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleBackButton" text="Go Back" />
          </children>
       </StackPane>
    </bottom>
    <top>
-      <ToolBar focusTraversable="false" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
           <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#handleRandomizeButton" text="Randomize" />
         </items>

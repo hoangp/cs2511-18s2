@@ -2,14 +2,11 @@ package tut09.javafx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class CountController extends AbstractController {
-	private int counter = 0;
+	public CountController() {}
 
-	public CountController(Stage stage) {
-		super(stage);
-	}
+	private int counter = 0;
 
 	@FXML private TextField numberField;
 

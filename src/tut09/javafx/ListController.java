@@ -6,12 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class ListController extends AbstractController {
-	public ListController(Stage stage) {
-		super(stage);
-	}
+	public ListController() {}
 
 	@FXML
 	public void initialize() {
