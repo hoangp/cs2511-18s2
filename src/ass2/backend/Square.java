@@ -18,15 +18,6 @@ public class Square {
 		tile.setSquare(this);
 		add(tile);
 	}
-
-	/**
-	 * Add an entity on the top of the entities stack
-	 */
-	public boolean add(Entity entity) {
-		if (entity == null) return false;
-		if (!isStackable()) return false;
-		return entities.add(entity);
-	}
 	
 	/**
 	 * Move the entity on top this square to the other square
@@ -39,6 +30,23 @@ public class Square {
 		}
 		return false;
 	}
+
+	/**
+	 * Add an entity on the top of the entities stack
+	 */
+	public boolean add(Entity entity) {
+		if (entity == null) return false;
+		if (!isStackable()) return false;
+		return entities.add(entity);
+	}
+	
+	/**
+	 * @return true if possible to put another entity on the entities stack
+	 */
+	private boolean isStackable() {
+		if (entities.size() == 0) return true;
+		return entities.peek().isStackable();
+	}
 	
 	/**
 	 * @return the entity on top of the entities stack
@@ -47,27 +55,19 @@ public class Square {
 		if (entities.size() == 0) return null;
 		return entities.peek();
 	}
-	
-	/**
-	 * @return true if possible to put another entity on the entities stack
-	 */
-	public boolean isStackable() {
-		if (entities.size() == 0) return true;
-		return entities.peek().isStackable();
-	}
-	
-	/**
-	 * @return the list of 4 adjacent squares (top, bottom, left, right)
-	 */
-	public List<Square> getAdjacentSquares() {
-		return Arrays.asList(above, below, left, right);
-	}
 
 	/**
 	 * @return true if the square is adjacent to this square
 	 */
 	public boolean isAdjacent(Square square) {
 		return getAdjacentSquares().contains(square);
+	}
+	
+	/**
+	 * @return the list of 4 adjacent squares (top, bottom, left, right)
+	 */
+	private List<Square> getAdjacentSquares() {
+		return Arrays.asList(above, below, left, right);
 	}
 
 	/** @return the square above of this square */
