@@ -9,22 +9,22 @@ public abstract class Entity {
 	/** @return the string symbol presentation of this entity */
 	public abstract String getSymbol();
 	
-	/** @return true if possible to push this entity */
+	/** @return true if possible to push this entity (Boulder) */
 	public boolean isPushable() { return false; };
 	
 	/** @return true if this entity has power to push things  */
 	public boolean isPusher() { return false; };
 	
 	/** the behavior when this entity is pushed by the pusher */
-	public boolean pushedBy(Entity pusher) { return isPushable(); }
+	public boolean pushedBy(Entity pusher) { return false; }
 	
-	/** @return true if possible to trigger this entity */
+	/** @return true if possible to trigger this entity (Switch) */
 	public boolean isTriggerable() { return false; };
 	
 	/** @return true if the entity is triggered */
 	public boolean isTriggered() { return false; };
 	
-	/** Set the trigger status (only if this entity is triggerable) */
+	/** Set the trigger status (only if this entity is trigger-able) */
 	public void setTrigger(boolean triggered) {};
 	
 	/** @return the square that this entity located */
@@ -55,9 +55,12 @@ public abstract class Entity {
 	 * Move this entity to an entity
 	 */
 	private boolean moveTo(Entity toEntity) {
-		if (toEntity == null) return false;
-		if (moveToSquare(toEntity.getSquare())) return true;
-		else if (toEntity.isPushable() && this.isPusher()) {
+		if (toEntity == null) return false; // check null entity (out of boundary)
+		
+		if (toEntity.isStackable())
+		  return moveToSquare(toEntity.getSquare());
+		  
+		else if (toEntity.isPushable() && this.isPusher()) { // boulder pushing
 			Square squareBeforePushed = toEntity.getSquare();
 			if (toEntity.pushedBy(this)) {
 				return moveToSquare(squareBeforePushed);
