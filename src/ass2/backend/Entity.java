@@ -43,7 +43,7 @@ public abstract class Entity {
 	/**
 	 * Move this entity to a square
 	 */
-	private boolean moveTo(Square toSquare) {
+	private boolean moveToSquare(Square toSquare) {
 		if (square.moveTo(toSquare)) {
 			square = toSquare;
 			return true;
@@ -56,11 +56,11 @@ public abstract class Entity {
 	 */
 	private boolean moveTo(Entity toEntity) {
 		if (toEntity == null) return false;
-		if (moveTo(toEntity.getSquare())) return true;
+		if (moveToSquare(toEntity.getSquare())) return true;
 		else if (toEntity.isPushable() && this.isPusher()) {
 			Square squareBeforePushed = toEntity.getSquare();
 			if (toEntity.pushedBy(this)) {
-				return moveTo(squareBeforePushed);
+				return moveToSquare(squareBeforePushed);
 			}
 		}
 		return false;
