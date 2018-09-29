@@ -3,11 +3,11 @@ package ass2.backend;
 public abstract class Entity {
 	private Square square; // the current square of this entity
 	
-	/** @return true if possible to put any entity on top of this entity */
-	public abstract boolean isStackable();
-	
 	/** @return the string symbol presentation of this entity */
 	public abstract String getSymbol();
+	
+	/** @return true if possible to put any entity on top of this entity */
+	public abstract boolean isStackable();
 	
 	/** @return true if possible to push this entity (Boulder) */
 	public boolean isPushable() { return false; };
@@ -16,7 +16,10 @@ public abstract class Entity {
 	public boolean isPusher() { return false; };
 	
 	/** the behavior when this entity is pushed by the pusher */
-	public boolean pushedBy(Entity pusher) { return false; }
+	public boolean pushedBy(Entity pusher) { 
+		if (isPushable()) throw new RuntimeException("Must be Override");
+		return false; 
+	}
 	
 	/** @return true if possible to trigger this entity (Switch) */
 	public boolean isTriggerable() { return false; };
@@ -25,7 +28,9 @@ public abstract class Entity {
 	public boolean isTriggered() { return false; };
 	
 	/** Set the trigger status (only if this entity is trigger-able) */
-	public void setTrigger(boolean triggered) {};
+	public void setTrigger(boolean triggered) {
+		if (isTriggerable()) throw new RuntimeException("Must be Override");
+	};
 	
 	/** @return the square that this entity located */
 	public Square getSquare() { return square; }
