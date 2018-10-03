@@ -45,8 +45,7 @@ class BoulderPushingTest {
     
     player.moveDown();
     player.moveDown();
-    Entity theSwitch = maze.getEntity(3, 3);
-    assertTrue(theSwitch instanceof Switch);
+    Switch theSwitch = (Switch) maze.getEntity(3, 3);
     assertFalse(theSwitch.isTriggered());
     player.moveRight();
     assertTrue(theSwitch.isTriggered());

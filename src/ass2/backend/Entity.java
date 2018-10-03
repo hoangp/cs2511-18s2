@@ -12,25 +12,19 @@ public abstract class Entity {
 	/** @return true if possible to push this entity (Boulder) */
 	public boolean isPushable() { return false; };
 	
-	/** @return true if this entity has power to push things  */
-	public boolean isPusher() { return false; };
-	
 	/** the behavior when this entity is pushed by the pusher */
 	public boolean pushedBy(Entity pusher) { 
-		if (isPushable()) throw new RuntimeException("Must be Override");
+		if (isPushable()) throw new RuntimeException("Must be override in subclass");
 		return false; 
 	}
 	
 	/** @return true if possible to trigger this entity (Switch) */
 	public boolean isTriggerable() { return false; };
 	
-	/** @return true if the entity is triggered */
-	public boolean isTriggered() { return false; };
-	
 	/** Set the trigger status (only if this entity is trigger-able) */
 	public void setTrigger(boolean triggered) {
-		if (isTriggerable()) throw new RuntimeException("Must be Override");
-	};
+		if (isTriggerable()) throw new RuntimeException("Must be override in subclass");
+	}
 	
 	/** @return the square that this entity located */
 	public Square getSquare() { return square; }
@@ -48,7 +42,7 @@ public abstract class Entity {
 	/**
 	 * Move this entity to a square
 	 */
-	private boolean moveToSquare(Square toSquare) {
+	public boolean moveToSquare(Square toSquare) {
 		if (square.moveTo(toSquare)) {
 			square = toSquare;
 			return true;
@@ -57,21 +51,12 @@ public abstract class Entity {
 	}
 	
 	/**
-	 * Move this entity to an entity
+	 * Move this entity to an Entity
 	 */
-	private boolean moveTo(Entity toEntity) {
+	public boolean moveTo(Entity toEntity) {
 		if (toEntity == null) return false; // check null entity (out of boundary)
-		
-		if (toEntity.isStackable())
-		  return moveToSquare(toEntity.getSquare());
-		  
-		else if (toEntity.isPushable() && this.isPusher()) { // boulder pushing
-			Square squareBeforePushed = toEntity.getSquare();
-			if (toEntity.pushedBy(this)) {
-				return moveToSquare(squareBeforePushed);
-			}
-		}
-		return false;
+		if (! toEntity.isStackable()) return false;
+		return moveToSquare(toEntity.getSquare());
 	}
 	
 	/** Move this entity up */
