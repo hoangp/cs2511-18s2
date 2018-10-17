@@ -1,7 +1,6 @@
 package tut12.smells.example2;
 
 public class Address {
-	
 	private final String number;
 	private final String street;
 	private final String city;
@@ -16,17 +15,14 @@ public class Address {
 		this.postcode = pCode;
 		this.country = country;
 	}
-	public String getCity() {
-		return city;
-	}
-	public PostCode getPostcode() {
-		return postcode;
-	}
-	public String getCountry() {
-		return country;
-	}
-	String getAddressSummary() {
-		return getCity() + "," + postcode.getPostcode();
-	}
+	
+	public String getCity() { return city; }
+	public PostCode getPostcode() { return postcode; }
+	public String getCountry() { return country; }
+	String getAddressSummary() { 
+	  return getCity() + "," + postcode.getPostcode(); 
+	 }
+  public String getNumber() { return number; }
+  public String getStreet() { return street; }
 	
 }

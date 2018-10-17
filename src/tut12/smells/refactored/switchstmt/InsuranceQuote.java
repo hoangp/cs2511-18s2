@@ -19,6 +19,7 @@ public class InsuranceQuote {
 		}
 		return RiskFactor.LOW;
 	}
+	
 	// Fix code smell: Switch statements
 	// 1.  Extract each return value into its own method
 	// 2.  Get each of these methods into their own classes

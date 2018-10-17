@@ -9,13 +9,8 @@ public class Customer {
 	public String getFirstName() {
 		return firstName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public Address getAddress() {
-		return address;
-	}	
+	
+	public String getLastName() {	return lastName; }
+	public String getTitle() { return title;}
+	public Address getAddress() { return address; }	
 }
