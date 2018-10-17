@@ -21,4 +21,11 @@ public class LockedCounter implements Counter {
     public long getCount() {
         return count;
     }
+
+    @Override
+    public void minus(long value) {
+      counterLock.lock();
+      count -= value;
+      counterLock.unlock();
+    }
 }

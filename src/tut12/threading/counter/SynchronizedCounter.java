@@ -17,4 +17,11 @@ public class SynchronizedCounter implements Counter {
     public long getCount() {
         return count;
     }
+
+    @Override
+    public void minus(long value) {
+      synchronized(this) {
+        count -= value;
+      }
+    }
 }
